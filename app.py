@@ -1,8 +1,12 @@
 import pickle
 import numpy as np
 from flask import Flask, render_template, request
+# import flasgger
+# from flasgger import Swagger
+
 
 app = Flask(__name__)
+# Swagger(app)
 
 # Load the trained model from the pickle file
 with open('model.pkl', 'rb') as file:
@@ -25,5 +29,8 @@ def index():
         return render_template('prediction.html', prediction=prediction[0])
     return render_template('index.html')
 
+@app.route("/predict")
+def pred():
+    return "1"
 if __name__ == '__main__':
     app.run(debug=False)
